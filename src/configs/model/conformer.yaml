@@ -1,0 +1,10 @@
+_target_: src.model.ConformerCTC
+n_feats: 80
+dim: 144
+num_layers: 16
+heads: 4
+expansion: 4
+kernel_size: 31
+dropout: 0.1
+subsampling_channels: 32
+gradient_checkpointing: false

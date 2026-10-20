@@ -1,0 +1,73 @@
+defaults:
+- model: conformer
+- datasets: librispeech
+- dataloader: duration
+- writer: wandb
+- _self_
+text_encoder:
+  _target_: src.text_encoder.CTCTextEncoder
+features:
+  _target_: src.transforms.features.LogMelSpectrogram
+  sample_rate: 16000
+  n_mels: 80
+augmentation:
+  _target_: src.transforms.wav_augs.WaveAugment
+  sample_rate: 16000
+  gain_p: 0.5
+  speed_p: 0.6
+  noise_p: 0.3
+  reverb_p: 0.2
+spec_augment:
+  _target_: src.transforms.features.SpecAugment
+  time_masks: 2
+  time_width: 40
+  freq_masks: 2
+  freq_width: 12
+optimizer:
+  _target_: torch.optim.AdamW
+  lr: 0.001
+  betas:
+  - 0.9
+  - 0.98
+  eps: 1.0e-08
+  weight_decay: 0.001
+lr_scheduler:
+  _target_: src.utils.scheduler.WarmupCosine
+  warmup_steps: 10000
+  total_steps: 200000
+  min_lr_ratio: 0.05
+loss_function:
+  _target_: src.loss.CTCLossWrapper
+  blank: 0
+  zero_infinity: false
+trainer:
+  seed: 42
+  device: cuda
+  require_cuda: true
+  cpu_threads: 2
+  amp: fp16
+  accumulation_steps: 4
+  max_grad_norm: 5
+  n_epochs: 80
+  max_steps: 200000
+  session_max_steps: 46000
+  save_dir: saved/char100
+  resume_from: null
+  init_from: null
+  monitor_partition: dev_other
+  save_every: 250
+  validate_every: 2000
+  log_every: 25
+  log_examples_every: 1000
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false
+dataloader:
+  max_seconds: 70
+  max_items: 16
+writer:
+  run_name: char100
+  log_checkpoints: false

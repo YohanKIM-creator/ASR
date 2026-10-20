@@ -1,0 +1,24 @@
+defaults:
+  - datasets: custom
+  - dataloader: duration
+  - _self_
+features: null
+augmentation: null
+inferencer:
+  device: auto
+  cpu_threads: 2
+  from_pretrained: saved/conformer-char/best.pt
+  save_path: outputs/predictions
+  decoder: greedy
+  beam_size: 32
+  token_topk: 8
+  lm_path: null
+  lm_uppercase: true
+  lm_alpha: 0.5
+  lm_beta: 1.0
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  job:
+    chdir: false
