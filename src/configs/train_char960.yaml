@@ -1,0 +1,21 @@
+defaults:
+  - train_char100
+  - _self_
+
+datasets:
+  train:
+    part: train_all
+dataloader:
+  max_seconds: 300
+  max_items: 64
+lr_scheduler:
+  warmup_steps: 2000
+trainer:
+  device: cuda
+  accumulation_steps: 1
+  save_dir: saved/char960
+  init_from: saved/char100/best.pt
+  session_max_steps: 22000
+writer:
+  run_name: char960
+  log_checkpoints: false
