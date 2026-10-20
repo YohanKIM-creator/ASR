@@ -1,0 +1,40 @@
+defaults:
+  - train_char100
+  - override datasets: local
+  - _self_
+model:
+  dim: 32
+  num_layers: 2
+  heads: 2
+  kernel_size: 7
+  subsampling_channels: 4
+  dropout: 0.1
+augmentation: null
+spec_augment: null
+dataloader:
+  max_seconds: 3
+  max_items: 2
+  num_workers: 0
+optimizer:
+  lr: 0.002
+  weight_decay: 0
+lr_scheduler:
+  warmup_steps: 5
+  total_steps: 300
+trainer:
+  require_cuda: false
+  device: cpu
+  amp: "off"
+  accumulation_steps: 1
+  n_epochs: 100
+  max_steps: 8
+  session_max_steps: null
+  save_dir: saved/smoke
+  save_every: 2
+  validate_every: 4
+  log_every: 1
+  log_examples_every: 4
+writer:
+  mode: disabled
+  log_checkpoints: true
+  run_name: smoke

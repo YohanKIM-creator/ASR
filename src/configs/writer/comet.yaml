@@ -1,0 +1,6 @@
+_target_: src.logger.CometWriter
+project_name: hse-asr-conformer
+workspace: kimigor157
+run_name: conformer-char
+mode: online
+log_checkpoints: true

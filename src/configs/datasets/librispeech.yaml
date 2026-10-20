@@ -1,0 +1,14 @@
+train:
+  _target_: src.datasets.LibrispeechDataset
+  data_dir: data/LibriSpeech
+  part: train-clean-100
+  max_audio_length: 20
+  ctc_alignment_padding_frames: 1
+dev_clean:
+  _target_: src.datasets.LibrispeechDataset
+  data_dir: data/LibriSpeech
+  part: dev-clean
+dev_other:
+  _target_: src.datasets.LibrispeechDataset
+  data_dir: data/LibriSpeech
+  part: dev-other

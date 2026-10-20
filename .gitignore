@@ -1,0 +1,34 @@
+# Local environments and credentials
+.venv/
+.venv-*/
+.secrets/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+# Data, checkpoints and private execution state
+data/
+saved/
+outputs/
+multirun/
+wandb/
+*.pt
+*.pth
+*.ckpt
+*.tar.gz
+*.zip
+.idea/
+.vscode/
+*.egg-info/
+.ipynb_checkpoints/
+verification.local.json
+
+# Hydra/console runtime logs
+*.log
+
+# Tiny licensed dataset included with the inference demo
+!demo/librispeech-sample.zip

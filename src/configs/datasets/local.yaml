@@ -1,0 +1,6 @@
+train:
+  _target_: src.datasets.CustomDirDataset
+  data_dir: data/smoke
+dev_other:
+  _target_: src.datasets.CustomDirDataset
+  data_dir: data/smoke

@@ -1,0 +1,6 @@
+_target_: src.logger.WandBWriter
+project_name: hse-asr-conformer
+entity: null
+run_name: conformer-char
+mode: online
+log_checkpoints: true
