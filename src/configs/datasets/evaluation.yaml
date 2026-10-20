@@ -1,0 +1,8 @@
+test_clean:
+  _target_: src.datasets.LibrispeechDataset
+  data_dir: data/LibriSpeech
+  part: test-clean
+test_other:
+  _target_: src.datasets.LibrispeechDataset
+  data_dir: data/LibriSpeech
+  part: test-other
